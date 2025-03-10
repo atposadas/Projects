@@ -1,0 +1,28 @@
+  [1m[35m (4.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='CancancanTutorial'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='CancancanTutorial'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CancancanTutorial'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='CancancanTutorial'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (4.1ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-03-10 22:37:53.801854', '2025-03-10 22:37:53.801858') RETURNING "key" /*application='CancancanTutorial'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CancancanTutorial'*/[0m
+Migrating to CreatePosts (20250310223546)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='CancancanTutorial'*/[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE TABLE "posts" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar, "body" text, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='CancancanTutorial'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250310223546') RETURNING "version" /*application='CancancanTutorial'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='CancancanTutorial'*/[0m
+Migrating to DeviseCreateUsers (20250310223716)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='CancancanTutorial'*/[0m
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime(6), "remember_created_at" datetime(6), "user_type" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='CancancanTutorial'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email") /*application='CancancanTutorial'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token") /*application='CancancanTutorial'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250310223716') RETURNING "version" /*application='CancancanTutorial'*/[0m
+  [1m[36mTRANSACTION (3.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='CancancanTutorial'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CancancanTutorial'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='CancancanTutorial'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='CancancanTutorial'*/[0m
+  [1m[36mUser Exists? (16.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'customer@mintbit.com' LIMIT 1 /*application='CancancanTutorial'*/[0m
+  [1m[36mUser Create (0.1ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "user_type", "created_at", "updated_at") VALUES ('customer@mintbit.com', '$2a$12$aDM8cw1UWf1AeJvGhBN0BeyphmK9L2POefHVpKzBlGiTGqtgFE7W6', NULL, NULL, NULL, 'customer', '2025-03-10 22:37:59.198172', '2025-03-10 22:37:59.198172') RETURNING "id" /*application='CancancanTutorial'*/[0m
+  [1m[36mTRANSACTION (4.6ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='CancancanTutorial'*/[0m
+  [1m[36mTRANSACTION (2.5ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='CancancanTutorial'*/[0m
+  [1m[36mUser Exists? (9.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = 'admin@mintbit.com' LIMIT 1 /*application='CancancanTutorial'*/[0m
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "user_type", "created_at", "updated_at") VALUES ('admin@mintbit.com', '$2a$12$hGlW4bHYI8EQw2sD1iDjsO92YvMiKEy4eAg9xxCJ3xwgH4Rg07EZ.', NULL, NULL, NULL, 'admin', '2025-03-10 22:37:59.422424', '2025-03-10 22:37:59.422424') RETURNING "id" /*application='CancancanTutorial'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='CancancanTutorial'*/[0m
