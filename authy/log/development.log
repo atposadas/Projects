@@ -1,0 +1,26 @@
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY) /*application='Authy'*/[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Authy'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT * FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = 'environment' ORDER BY "ar_internal_metadata"."key" ASC LIMIT 1 /*application='Authy'*/[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ('environment', 'development', '2025-03-13 20:12:08.606328', '2025-03-13 20:12:08.606331') RETURNING "key" /*application='Authy'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Authy'*/[0m
+Migrating to CreateUsers (20250313201157)
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Authy'*/[0m
+  [1m[35m (11.5ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email_address" varchar NOT NULL, "password_digest" varchar NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL) /*application='Authy'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email_address" ON "users" ("email_address") /*application='Authy'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250313201157') RETURNING "version" /*application='Authy'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Authy'*/[0m
+Migrating to CreateSessions (20250313201158)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Authy'*/[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE TABLE "sessions" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer NOT NULL, "ip_address" varchar, "user_agent" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_758836b4f0"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+) /*application='Authy'*/[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_sessions_on_user_id" ON "sessions" ("user_id") /*application='Authy'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ('20250313201158') RETURNING "version" /*application='Authy'*/[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Authy'*/[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC /*application='Authy'*/[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN immediate TRANSACTION /*application='Authy'*/[0m
+  [1m[36mUser Create (4.6ms)[0m  [1m[32mINSERT INTO "users" ("email_address", "password_digest", "created_at", "updated_at") VALUES ('foo@bar', '$2a$12$YmSwNatH.rdmX7axVN7KnuqnxxqgJ.fbt83y0c0C.kS2hkXRQz6EC', '2025-03-13 20:14:19.738402', '2025-03-13 20:14:19.738402') RETURNING "id" /*application='Authy'*/[0m
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[35mCOMMIT TRANSACTION /*application='Authy'*/[0m
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for pp */ LIMIT 11 /*application='Authy'*/[0m
+  [1m[36mUser Load (3.2ms)[0m  [1m[34mSELECT "users".* FROM "users" ORDER BY "users"."id" ASC LIMIT 1 /*application='Authy'*/[0m
